@@ -1,18 +1,22 @@
 <div class="parallax-container">
   <div class="section">
     <div class="container">
-      <br />
-      <br />
-      <h1 class="header center pink-text text-darken-4">Pro Renter</h1>
+      <br/>
+      <br/>
+      <h4 class="header center white-text">Pro Renter</h4>
       <div class="row center">
-        <h3 class="pink-text text-darken-3">Manage your rentals like a Pro! Automate your billing, maintain collection history</h3>
+        <h3 class="white-text">Manage your renters like a Pro! Automate your billing, maintain collection history</h3>
       </div>
       <div class="row center">
-        <a href="#" class="btn pink">Submit Request</a>
+        <% if current_user %>
+          <a href="<%= url_for(controller: '/dashboard/welcome', action: 'dashboard') %>" class="btn btn-large pink">Dashboard</a>
+        <% else %>
+          <a href="<%= url_for(controller: 'devise/registrations', action: 'new') %>" class="btn btn-large pink">Sign Up</a>
+        <% end %>
       </div>
     </div>
   </div>
-  <div class="parallax"><img src="<%= asset_path('season.jpg') %>"></div>
+  <div class="parallax"><img src="<%= asset_path('tianjin.jpg') %>"></div>
 </div>
 <div class="container">
   <div class="row">
