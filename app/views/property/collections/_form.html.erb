@@ -1,0 +1,37 @@
+<%= form_with(model: property_collection, local: true) do |form| %>
+  <% if property_collection.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property_collection.errors.count, "error") %> prohibited this property_collection from being saved:</h2>
+
+      <ul>
+      <% property_collection.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :amount %>
+    <%= form.text_field :amount, id: :property_collection_amount %>
+  </div>
+
+  <div class="field">
+    <%= form.label :section_id %>
+    <%= form.number_field :section_id, id: :property_collection_section_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :property_id %>
+    <%= form.text_field :property_id, id: :property_collection_property_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :property_collection_user_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

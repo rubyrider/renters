@@ -1,0 +1,9 @@
+<div class="container">
+  <h1 class="pink-text">Setup Property</h1>
+
+  <div class="row center">
+    <a href="<%= url_for(controller: 'properties', action: 'index') %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">list</i></a>
+  </div>
+
+  <%= render 'form', property: @property %>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625084322) do
+ActiveRecord::Schema.define(version: 20170625121002) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,18 @@ ActiveRecord::Schema.define(version: 20170625084322) do
     t.index ["user_id"], name: "index_properties_on_user_id"
   end
 
+  create_table "property_collections", force: :cascade do |t|
+    t.string "amount"
+    t.integer "section_id"
+    t.bigint "property_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["property_id"], name: "index_property_collections_on_property_id"
+    t.index ["section_id"], name: "index_property_collections_on_section_id"
+    t.index ["user_id"], name: "index_property_collections_on_user_id"
+  end
+
   create_table "renters", force: :cascade do |t|
     t.string "name"
     t.citext "code"
@@ -65,6 +77,15 @@ ActiveRecord::Schema.define(version: 20170625084322) do
     t.datetime "updated_at", null: false
     t.index ["property_id"], name: "index_renters_on_property_id"
     t.index ["user_id"], name: "index_renters_on_user_id"
+  end
+
+  create_table "sections", force: :cascade do |t|
+    t.string "name"
+    t.string "code"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sections_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -88,6 +109,10 @@ ActiveRecord::Schema.define(version: 20170625084322) do
   end
 
   add_foreign_key "properties", "users"
+  add_foreign_key "property_collections", "properties"
+  add_foreign_key "property_collections", "sections"
+  add_foreign_key "property_collections", "users"
   add_foreign_key "renters", "properties"
   add_foreign_key "renters", "users"
+  add_foreign_key "sections", "users"
 end

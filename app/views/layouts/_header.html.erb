@@ -3,29 +3,17 @@
     <%= link_to 'Renter', root_path, class: 'brand-logo' %>
     <ul class="right hide-on-med-and-down">
       <%- if current_user %>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Properties', "#" %></li>
-        <li><%= link_to 'Sign Out', "#" %></li>
-        <li><%= link_to 'About', '#' %></li>
+      <%= render 'layouts/header_signed_in_links' %>
       <% else %>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Submit Request', "#" %></li>
-        <li><%= link_to 'Sign In', "#" %></li>
-        <li><%= link_to 'About', '#' %></li>
+       <%= render 'layouts/header_signout_links'  %>
       <% end %>
     </ul>
     <ul id="nav-mobile" class="side-nav">
       <%- if current_user %>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Properties', "#" %></li>
-        <li><%= link_to 'Sign Out', "#" %></li>
-        <li><%= link_to 'About', '#' %></li>
-      <% else %>
-        <li><%= link_to 'Home', root_path %></li>
-        <li><%= link_to 'Submit Request', "#" %></li>
-        <li><%= link_to 'Sign In', "#" %></li>
-        <li><%= link_to 'About', '#' %></li>
-      <% end %>
+        <%= render 'layouts/header_signed_in_links' %>
+    <% else %>
+        <%= render 'layouts/header_signout_links'  %>
+    <% end %>
     </ul>
     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
   </div>

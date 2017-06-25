@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: MyString
+  section_id: 1
+  property: one
+  user: one
+
+two:
+  amount: MyString
+  section_id: 1
+  property: two
+  user: two
