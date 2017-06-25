@@ -11,8 +11,15 @@ Rails.application.routes.draw do
 
   get 'welcome/about'
 
-  resources :users, only: [:show, :edit, :update]
-  resources :properties
+  namespace :dashboard do
+    root 'welcome#dashboard'
+    resources :users, only: [:show, :edit, :update]
+    resources :properties
+    resources :client_properties
+    namespace :property do
+      resources :clients
+    end
+  end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

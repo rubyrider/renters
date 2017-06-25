@@ -1,0 +1,73 @@
+<%= form_with(model: [:dashboard, property_client], local: true) do |form| %>
+  <% if property_client.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(property_client.errors.count, "error") %> prohibited this renters from being saved:</h2>
+
+      <ul>
+      <% property_client.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name %><br />
+    <%= form.text_field :first_name, autofocus: true %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :last_name %><br />
+    <%= form.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone %><br />
+    <%= form.text_field :phone, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :suite, 'House Name/Number' %><br />
+    <%= form.text_field :suite, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address1, 'Street Number' %><br />
+    <%= form.text_field :address1, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address2 %><br />
+    <%= form.text_field :address2, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :post_office %><br />
+    <%= form.text_field :post_office, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :area %><br />
+    <%= form.text_field :area, autocomplete: "off" %>
+  </div>
+
+
+  <div class="field">
+    <%= form.label :district %><br />
+    <%= form.text_field :district, autocomplete: "off" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :zip %><br />
+    <%= form.text_field :zip, autocomplete: "off" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit 'Add Property', class: 'btn pink' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit nil, class: 'btn pink' %>
+  </div>
+<% end %>

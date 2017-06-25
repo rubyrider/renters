@@ -1,0 +1,18 @@
+<div class="container">
+  <h5 class="pink-text">Clients/Renters&nbsp;
+    <a href="<%= url_for(controller: '/dashboard/property/clients', action: 'new') %>" class="btn btn-floating btn-large pink pulse right"><i class="material-icons">add</i></a>
+  </h5>
+
+  <ul class="collection">
+    <% @property_clients.each do |client| %>
+      <li class="collection-item avatar">
+        <i class="material-icons circle green">insert_chart</i>
+        <span class="title">Client Id: <%= client.id %></span>
+        <p><a href="<%= url_for(controller: 'dashboard/property/clients', action: :show, id: client) %>"><%= client.full_name %></a><br /><%= client.phone %><br>
+        </p>
+        <a href="#!" class="secondary-content"><i class="material-icons">close</i></a>
+      </li>
+    <% end %>
+  </ul>
+</div>
+<br>

@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: sections
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  code       :string
+#  user_id    :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'test_helper'
 
 class SectionTest < ActiveSupport::TestCase
