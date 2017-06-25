@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625121002) do
+ActiveRecord::Schema.define(version: 20170625123634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -54,6 +54,28 @@ ActiveRecord::Schema.define(version: 20170625121002) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_properties_on_user_id"
+  end
+
+  create_table "properties_property_clients", id: false, force: :cascade do |t|
+    t.bigint "property_client_id", null: false
+    t.bigint "property_id", null: false
+  end
+
+  create_table "property_clients", force: :cascade do |t|
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.bigint "user_id"
+    t.string "phone", null: false
+    t.string "suite"
+    t.string "address1", null: false
+    t.string "address2"
+    t.string "district", null: false
+    t.string "post_office"
+    t.string "zip", null: false
+    t.string "area", comment: "Thana"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_property_clients_on_user_id"
   end
 
   create_table "property_collections", force: :cascade do |t|
@@ -109,6 +131,7 @@ ActiveRecord::Schema.define(version: 20170625121002) do
   end
 
   add_foreign_key "properties", "users"
+  add_foreign_key "property_clients", "users"
   add_foreign_key "property_collections", "properties"
   add_foreign_key "property_collections", "sections"
   add_foreign_key "property_collections", "users"

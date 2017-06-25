@@ -1,6 +1,11 @@
-<h1>Editing User</h1>
+<div class="container">
+<h1>Edit Profile</h1>
 
 <%= render 'form', user: @user %>
 
-<%= link_to 'Show', @user %> |
-<%= link_to 'Back', users_path %>
+  <div class="row center">
+    <a href="<%= url_for(controller: 'properties', action: 'index') %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">menu</i></a>
+    <a href="<%= url_for(controller: 'users', action: 'edit', id: @user) %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">edit</i></a>
+  </div>
+</div>
+

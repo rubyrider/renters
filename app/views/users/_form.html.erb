@@ -11,7 +11,22 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= form.label :first_name %><br />
+    <%= form.text_field :first_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name %><br />
+    <%= form.text_field :last_name, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :number_of_property %><br />
+    <%= form.text_field :number_of_property, autofocus: true %>
+  </div>
+
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit 'Update', class: 'btn pink' %>
   </div>
 <% end %>
