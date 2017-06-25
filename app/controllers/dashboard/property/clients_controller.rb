@@ -16,7 +16,7 @@ module Dashboard
 
       # GET /dashboard/property/clients/new
       def new
-        @property_client = current_user.clients.new
+        @client = current_user.clients.new
       end
 
       # GET /dashboard/property/clients/1/edit
@@ -26,15 +26,15 @@ module Dashboard
       # POST /dashboard/property/clients
       # POST /dashboard/property/clients.json
       def create
-        @property_client = current_user.clients.new(dashboard_property_client_params)
+        @client = current_user.clients.new(dashboard_property_client_params)
 
         respond_to do |format|
-          if @property_client.save
-            format.html { redirect_to [:dashboard, @property_client], notice: 'Client was successfully created.' }
-            format.json { render :show, status: :created, location: @property_client }
+          if @client.save
+            format.html { redirect_to [:dashboard, @client], notice: 'Client was successfully created.' }
+            format.json { render :show, status: :created, location: @client }
           else
             format.html { render :new }
-            format.json { render json: @property_client.errors, status: :unprocessable_entity }
+            format.json { render json: @client.errors, status: :unprocessable_entity }
           end
         end
       end
@@ -43,12 +43,12 @@ module Dashboard
       # PATCH/PUT /dashboard/property/clients/1.json
       def update
         respond_to do |format|
-          if @property_client.update(dashboard_property_client_params)
-            format.html { redirect_to [:dashboard, @property_client], notice: 'Client was successfully updated.' }
-            format.json { render :show, status: :ok, location: @property_client }
+          if @client.update(dashboard_property_client_params)
+            format.html { redirect_to [:dashboard, @client], notice: 'Client was successfully updated.' }
+            format.json { render :show, status: :ok, location: @client }
           else
             format.html { render :edit }
-            format.json { render json: @property_client.errors, status: :unprocessable_entity }
+            format.json { render json: @client.errors, status: :unprocessable_entity }
           end
         end
       end
@@ -56,7 +56,7 @@ module Dashboard
       # DELETE /dashboard/property/clients/1
       # DELETE /dashboard/property/clients/1.json
       def destroy
-        @property_client.destroy
+        @client.destroy
         respond_to do |format|
           format.html { redirect_to url_for(controller: 'dashboard/property/clients', action: 'index'), notice: 'Client was successfully destroyed.' }
           format.json { head :no_content }
@@ -66,7 +66,7 @@ module Dashboard
       private
       # Use callbacks to share common setup or constraints between actions.
       def set_dashboard_property_client
-        @property_client = current_user.clients.find(params[:id])
+        @client = current_user.clients.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

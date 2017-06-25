@@ -26,4 +26,8 @@ class Property::Client < ApplicationRecord
   def full_name
     [first_name, last_name].join(' ')
   end
+
+  def address
+    [suite, address1, address2, post_office, area, district, zip].compact.uniq.join(', ')
+  end
 end

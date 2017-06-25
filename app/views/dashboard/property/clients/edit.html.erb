@@ -1,6 +1,12 @@
-<h1>Editing Dashboard Property Client</h1>
+<div class="container">
 
-<%= render 'form', dashboard_property_client: @property_client %>
+  <h1>Editing Client</h1>
 
-<%= link_to 'Show', @property_client %> |
-<%= link_to 'Back', dashboard_property_clients_path %>
+  <%= render 'form', property_client: @client %>
+
+  <br />
+
+  <%= link_to 'Show', url_for(controller: 'dashboard/property/clients', action: :show, id: @client), class: 'btn pink' %>
+
+  <%= link_to 'Back', dashboard_property_clients_path, class: 'btn pink' %>
+</div>>
