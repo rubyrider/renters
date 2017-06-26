@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :invoices
   namespace :property do
     resources :collections
   end
@@ -13,10 +12,13 @@ Rails.application.routes.draw do
   get 'welcome/about'
 
   namespace :dashboard do
+    resource :sms_account, only: [:show]
+    resources :contracts
     root 'welcome#dashboard'
     resources :users, only: [:show, :edit, :update]
     resources :properties
     resources :client_properties
+    resources :invoices
     namespace :property do
       resources :clients
     end

@@ -30,6 +30,11 @@ class User < ApplicationRecord
   has_many :contracts
   has_many :clients, class_name: 'Property::Client'
   has_many :rent_collections, :class_name => 'Property::RentCollection'
+  has_many :invoices
+
+  has_one :sms_account
+
+  after_commit :create_sms_account
 
   def full_name
     [first_name, last_name].compact.join(' ')

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626071439) do
+ActiveRecord::Schema.define(version: 20170626161644) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -115,6 +115,7 @@ ActiveRecord::Schema.define(version: 20170626071439) do
     t.datetime "updated_at", null: false
     t.integer "fee_cents", default: 0, null: false
     t.string "fee_currency", default: "USD", null: false
+    t.string "name"
     t.index ["property_id"], name: "index_property_collections_on_property_id"
     t.index ["section_id"], name: "index_property_collections_on_section_id"
     t.index ["user_id"], name: "index_property_collections_on_user_id"
@@ -138,6 +139,17 @@ ActiveRecord::Schema.define(version: 20170626071439) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_sections_on_user_id"
+  end
+
+  create_table "sms_accounts", force: :cascade do |t|
+    t.integer "amount", default: 0
+    t.bigint "user_id"
+    t.string "state"
+    t.integer "payment_cents", default: 0, null: false
+    t.string "payment_currency", default: "USD", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_sms_accounts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|

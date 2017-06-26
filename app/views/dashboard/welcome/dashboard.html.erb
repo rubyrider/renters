@@ -50,10 +50,10 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">SMS</span>
-          <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
+          <p class="dashboard-item-counter"><%= current_user.sms_account.try(:amount) || 0 %></p>
         </div>
         <div class="card-action center">
-          <a href="#">SMS</a><br/>
+          <a href="<%= url_for(controller: 'dashboard/sms_accounts', action: :show) %>">SMS</a><br/>
         </div>
       </div>
     </div>
@@ -61,10 +61,10 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Invoicing</span>
-          <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
+          <p class="dashboard-item-counter"><%= current_user.invoices.count %></p>
         </div>
         <div class="card-action center">
-          <a href="#">Manage Invoice</a><br/>
+          <a href="<%= url_for(controller: 'invoices', action: 'index') %>">Manage Invoice</a><br/>
         </div>
       </div>
     </div>

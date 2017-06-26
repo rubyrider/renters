@@ -1,0 +1,2 @@
+module Dashboard::ContractsHelper
+end

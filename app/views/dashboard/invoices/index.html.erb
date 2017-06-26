@@ -1,0 +1,25 @@
+<div class="container">
+  <h5 class="pink-text">Manage Invoices&nbsp;
+    <a href="<%= url_for(controller: 'dashboard/invoices', action: 'new') %>" class="btn btn-floating btn-large pink pulse right"><i class="material-icons">add</i></a>
+  </h5>
+  <br/>
+  <ul class="collection">
+    <% @invoices.each do |invoice| %>
+      <li class="collection-item avatar">
+        <a href="<%= url_for(controller: 'dashboard/invoices', action: 'show', id: invoice) %>">
+          <i class="material-icons circle">folder</i>
+          <span class="title pink-text text-darken-1"><%= invoice.full_name %></span>
+          <p class="pink-text text-darken-3">
+            Due date: <%= invoice.due_date %><br />
+            Paid date: <%= invoice.paid_at %>
+          </p>
+          <a href="<%= url_for(controller: 'dashboard/invoices', action: 'destroy', id: invoice) %>" data-method="delete" data-confirm="Are you sure you want to delete your property" , class="secondary-content pink-text"><i class="material-icons">close</i></a>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+
+  <br>
+
+  <%= link_to 'New Invoice', new_dashboard_invoice_path, class: 'pink-text' %>
+</div>

@@ -1,0 +1,17 @@
+<%= form_with(model: dashboard_contract, local: true) do |form| %>
+  <% if dashboard_contract.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(dashboard_contract.errors.count, "error") %> prohibited this dashboard_contract from being saved:</h2>
+
+      <ul>
+      <% dashboard_contract.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
