@@ -5,7 +5,7 @@ module Dashboard
     # GET /dashboard/contracts
     # GET /dashboard/contracts.json
     def index
-      @contracts = Contract.all
+      @contracts = current_user.contracts
     end
 
     # GET /dashboard/contracts/1
@@ -15,7 +15,7 @@ module Dashboard
 
     # GET /dashboard/contracts/new
     def new
-      @contract = Contract.new
+      @contract = current_user.contracts.new
     end
 
     # GET /dashboard/contracts/1/edit
@@ -25,11 +25,11 @@ module Dashboard
     # POST /dashboard/contracts
     # POST /dashboard/contracts.json
     def create
-      @contract = Contract.new(dashboard_contract_params)
+      @contract = current_user.contracts.new(dashboard_contract_params)
 
       respond_to do |format|
         if @contract.save
-          format.html { redirect_to @contract, notice: 'Contract was successfully created.' }
+          format.html { redirect_to [:dashboard, @contract], notice: 'Contract was successfully created.' }
           format.json { render :show, status: :created, location: @dashboard_contract }
         else
           format.html { render :new }
@@ -43,7 +43,7 @@ module Dashboard
     def update
       respond_to do |format|
         if @contract.update(dashboard_contract_params)
-          format.html { redirect_to @contract, notice: 'Contract was successfully updated.' }
+          format.html { redirect_to [:dashboard, @contract], notice: 'Contract was successfully updated.' }
           format.json { render :show, status: :ok, location: @contract }
         else
           format.html { render :edit }
@@ -70,7 +70,9 @@ module Dashboard
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dashboard_contract_params
-      params.fetch(:contract, {}).permit(:client_id, :property_id, :created_at, :updated_at, :unit_name, :contract_period, :user_id)
+      params.fetch(:contract, {}).permit(:client_id, :property_id, :created_at,
+                                         :updated_at, :unit_name, :contract_period,
+                                         :user_id, :start_date, :end_date)
     end
   end
 end

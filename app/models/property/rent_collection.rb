@@ -10,6 +10,7 @@
 #  updated_at   :datetime         not null
 #  fee_cents    :integer          default(0), not null
 #  fee_currency :string           default("USD"), not null
+#  name         :string
 #
 
 class Property::RentCollection < ApplicationRecord

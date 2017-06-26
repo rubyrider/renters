@@ -1,4 +1,20 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+  <p id="notice"><%= notice %></p>
 
-<%= link_to 'Edit', edit_dashboard_contract_path(@dashboard_contract) %> |
-<%= link_to 'Back', dashboard_contracts_path %>
+  <div class="row center">
+    <a href="<%= url_for(controller: 'dashboard/contracts', action: 'edit', id: @contract) %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">edit</i></a>
+    <a href="<%= url_for(controller: 'dashboard/contracts', action: 'index') %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">list</i></a>
+    <a href="<%= url_for(controller: 'dashboard/contracts', action: 'new') %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">add</i></a>
+  </div>
+
+  <div class="row center">
+    <p class="pink-text">Renter Name: <%= @contract.client.full_name %></p>
+    <p class="pink-text">Unit Name: <%= @contract.unit_name %></p>
+    <p class="pink-text">Contract Period: <%= @contract.contract_period %> Months</p>
+    <p class="pink-text">Start Date: <%= @contract.start_date %></p>
+  </div>
+
+  <div class="row center">
+    <a href="#!" class="btn btn-large pink">Add Client(Who rented)</a>
+  </div>
+</div>

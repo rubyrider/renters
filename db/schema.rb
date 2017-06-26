@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626161644) do
+ActiveRecord::Schema.define(version: 20170626170744) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,8 @@ ActiveRecord::Schema.define(version: 20170626161644) do
     t.integer "contract_period", default: 1, comment: "In Months"
     t.bigint "user_id"
     t.bigint "property_collection_id"
+    t.date "start_date"
+    t.date "end_date"
     t.index ["client_id"], name: "index_clients_properties_on_client_id"
     t.index ["property_collection_id"], name: "index_clients_properties_on_property_collection_id"
     t.index ["property_id"], name: "index_clients_properties_on_property_id"

@@ -29,7 +29,7 @@
           <p class="dashboard-item-counter"><%= current_user.contracts.count %></p>
         </div>
         <div class="card-action center">
-          <a href="#">Rent List</a><br/>
+          <a href="<%= url_for(controller: 'dashboard/contracts') %>">Rent List</a><br/>
         </div>
       </div>
     </div>
