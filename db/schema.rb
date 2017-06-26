@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626170744) do
+ActiveRecord::Schema.define(version: 20170626182742) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,6 +118,8 @@ ActiveRecord::Schema.define(version: 20170626170744) do
     t.integer "fee_cents", default: 0, null: false
     t.string "fee_currency", default: "USD", null: false
     t.string "name"
+    t.bigint "clients_properties_id"
+    t.index ["clients_properties_id"], name: "index_property_collections_on_clients_properties_id"
     t.index ["property_id"], name: "index_property_collections_on_property_id"
     t.index ["section_id"], name: "index_property_collections_on_section_id"
     t.index ["user_id"], name: "index_property_collections_on_user_id"
@@ -180,6 +182,7 @@ ActiveRecord::Schema.define(version: 20170626170744) do
   add_foreign_key "invoices", "users"
   add_foreign_key "properties", "users"
   add_foreign_key "property_clients", "users"
+  add_foreign_key "property_collections", "clients_properties", column: "clients_properties_id"
   add_foreign_key "property_collections", "properties"
   add_foreign_key "property_collections", "sections"
   add_foreign_key "property_collections", "users"

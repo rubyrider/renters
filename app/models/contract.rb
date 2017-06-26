@@ -11,6 +11,8 @@
 #  contract_period        :integer          default(1)
 #  user_id                :integer
 #  property_collection_id :integer
+#  start_date             :date
+#  end_date               :date
 #
 
 class Contract < ApplicationRecord

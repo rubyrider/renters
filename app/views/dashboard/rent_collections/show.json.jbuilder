@@ -1,0 +1,1 @@
+json.partial! "dashboard_rent_collections/dashboard_rent_collection", dashboard_rent_collection: @dashboard_rent_collection
