@@ -20,7 +20,7 @@
 
 class Property::Client < ApplicationRecord
   belongs_to :user, optional: true
-
+  has_many :contracts
   has_and_belongs_to_many :properties, join_table: 'clients_properties'
 
   def full_name

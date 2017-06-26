@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :invoices
   namespace :property do
     resources :collections
   end

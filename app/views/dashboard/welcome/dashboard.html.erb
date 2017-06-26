@@ -4,8 +4,7 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Manage Properties</span>
-          <p>Add your apartments to continue processing.
-            Once you setup your properties you can add renters and setup contracts</p>
+          <p class="dashboard-item-counter"><%= current_user.properties.count %></p>
         </div>
         <div class="card-action center">
           <a href="<%= url_for(controller: 'dashboard/properties', action: :index) %>">Property/Apartment List</a><br/>
@@ -16,8 +15,7 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Manage Clients</span>
-          <p>Add your client information in order start rental contract.
-            Once you setup your clients you can build the rent and start collecting payments</p>
+          <p class="dashboard-item-counter"><%= current_user.clients.count %></p>
         </div>
         <div class="card-action center">
           <a href="<%= url_for(controller: 'dashboard/property/clients', action: :index) %>">Renter List</a><br/>
@@ -28,8 +26,7 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Manage Rents</span>
-          <p>Attach your clients to your apartment's flat/unit.
-            Once you setup your clients you can build the rent contract and start collecting payments</p>
+          <p class="dashboard-item-counter"><%= current_user.contracts.count %></p>
         </div>
         <div class="card-action center">
           <a href="#">Rent List</a><br/>
@@ -42,8 +39,7 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Manage Payments</span>
-          <p>Once you are done with setting up contract (Manage Rent).
-            You can start collecting payments monthly or anytime</p>
+          <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
         </div>
         <div class="card-action center">
           <a href="#">Payments</a><br/>
@@ -53,12 +49,11 @@
     <div class="col s12 m4">
       <div class="card pink darken-1">
         <div class="card-content white-text">
-          <span class="card-title">Report</span>
-          <p>Once you start posting rent payments. We will keep building
-            a searchable reports for you to review.</p>
+          <span class="card-title">SMS</span>
+          <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
         </div>
         <div class="card-action center">
-          <a href="#">All Reports</a><br/>
+          <a href="#">SMS</a><br/>
         </div>
       </div>
     </div>
@@ -66,8 +61,7 @@
       <div class="card pink darken-1">
         <div class="card-content white-text">
           <span class="card-title">Invoicing</span>
-          <p>Once you start the contract in between your renters and apartment unit,
-            system will generating an printable invoice.</p>
+          <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
         </div>
         <div class="card-action center">
           <a href="#">Manage Invoice</a><br/>

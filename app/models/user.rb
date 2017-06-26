@@ -27,8 +27,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :properties
-  has_many :client_properties
+  has_many :contracts
   has_many :clients, class_name: 'Property::Client'
+  has_many :rent_collections, :class_name => 'Property::RentCollection'
 
   def full_name
     [first_name, last_name].compact.join(' ')

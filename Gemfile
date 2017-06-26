@@ -57,3 +57,6 @@ gem 'devise'
 gem 'activeadmin', github: 'activeadmin/activeadmin'
 gem 'materialize-sass'
 gem 'jquery'
+
+gem 'money'
+gem 'money-rails', '~>1'

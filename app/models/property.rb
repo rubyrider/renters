@@ -12,6 +12,7 @@
 
 class Property < ApplicationRecord
   belongs_to :user
-
+  has_many :contracts
   has_and_belongs_to_many :clients, :class_name => 'Property::Client', join_table: 'clients_properties'
+  has_many :rent_collections, :class_name => 'Property::RentCollection'
 end

@@ -12,4 +12,5 @@
 
 class Section < ApplicationRecord
   belongs_to :user
+  has_many :rent_collections, :class_name => 'Property::RentCollection'
 end

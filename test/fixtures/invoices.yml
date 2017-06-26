@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  first_name: MyString
+  last_name: MyString
+  client: one
+  user: one
+  contract: one
+  property: one
+  due_date: 2017-06-26 13:14:39
+  invoicing_date: 2017-06-26 13:14:39
+  paid_at: 2017-06-26 13:14:39
+  cancelled_at: 2017-06-26 13:14:39
+  rent_collection: one
+
+two:
+  first_name: MyString
+  last_name: MyString
+  client: two
+  user: two
+  contract: two
+  property: two
+  due_date: 2017-06-26 13:14:39
+  invoicing_date: 2017-06-26 13:14:39
+  paid_at: 2017-06-26 13:14:39
+  cancelled_at: 2017-06-26 13:14:39
+  rent_collection: two

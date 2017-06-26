@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170625175252) do
+ActiveRecord::Schema.define(version: 20170626071439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,9 +55,30 @@ ActiveRecord::Schema.define(version: 20170625175252) do
     t.string "unit_name"
     t.integer "contract_period", default: 1, comment: "In Months"
     t.bigint "user_id"
+    t.bigint "property_collection_id"
     t.index ["client_id"], name: "index_clients_properties_on_client_id"
+    t.index ["property_collection_id"], name: "index_clients_properties_on_property_collection_id"
     t.index ["property_id"], name: "index_clients_properties_on_property_id"
     t.index ["user_id"], name: "index_clients_properties_on_user_id"
+  end
+
+  create_table "invoices", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "client_id"
+    t.bigint "user_id"
+    t.integer "contract_id"
+    t.bigint "property_id"
+    t.datetime "due_date"
+    t.datetime "invoicing_date"
+    t.datetime "paid_at"
+    t.datetime "cancelled_at"
+    t.integer "rent_collection_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_invoices_on_client_id"
+    t.index ["property_id"], name: "index_invoices_on_property_id"
+    t.index ["user_id"], name: "index_invoices_on_user_id"
   end
 
   create_table "properties", force: :cascade do |t|
@@ -87,12 +108,13 @@ ActiveRecord::Schema.define(version: 20170625175252) do
   end
 
   create_table "property_collections", force: :cascade do |t|
-    t.string "amount"
     t.integer "section_id"
     t.bigint "property_id"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "fee_cents", default: 0, null: false
+    t.string "fee_currency", default: "USD", null: false
     t.index ["property_id"], name: "index_property_collections_on_property_id"
     t.index ["section_id"], name: "index_property_collections_on_section_id"
     t.index ["user_id"], name: "index_property_collections_on_user_id"
@@ -138,7 +160,10 @@ ActiveRecord::Schema.define(version: 20170625175252) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "clients_properties", "property_collections"
   add_foreign_key "clients_properties", "users"
+  add_foreign_key "invoices", "properties"
+  add_foreign_key "invoices", "users"
   add_foreign_key "properties", "users"
   add_foreign_key "property_clients", "users"
   add_foreign_key "property_collections", "properties"
