@@ -22,4 +22,9 @@ class Property::RentCollection < ApplicationRecord
   belongs_to :property
   belongs_to :user
   belongs_to :section
+
+  monetize :fee_cents
+
+  default_scope -> { order(created_at: :desc) }
 end
+
