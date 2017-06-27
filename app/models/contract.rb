@@ -21,4 +21,6 @@ class Contract < ApplicationRecord
   belongs_to :client, :class_name => 'Property::Client'
   belongs_to :property
   belongs_to :user
+
+  has_many :rents, :class_name => 'Property::RentCollection', foreign_key: :clients_properties_id
 end

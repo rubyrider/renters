@@ -45,7 +45,7 @@
           <p class="dashboard-item-counter"><%= current_user.rent_collections.sum(:fee_cents) %></p>
         </div>
         <div class="card-action center">
-          <a href="#">Payments</a><br/>
+          <a href="<%= url_for(controller: 'dashboard/rent_collections') %>">Payments</a><br/>
         </div>
       </div>
     </div>

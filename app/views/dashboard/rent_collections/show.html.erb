@@ -1,0 +1,21 @@
+<div class="container">
+  <p id="notice"><%= notice %></p>
+
+  <div class="row center">
+    <a href="<%= url_for(controller: 'dashboard/rent_collections', action: 'edit', contract_id: @contract || @rent_collection.contract, id: @rent_collection) %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">edit</i></a>
+    <a href="<%= url_for(controller: 'dashboard/rent_collections', action: 'index') %>" class="btn btn-floating btn-large pink pulse"><i class="material-icons">list</i></a>
+  </div>
+
+  <div class="row center">
+    <p class="pink-text">Invoice Name: <%= @rent_collection.name %></p>
+    <p class="pink-text">Renter Name: <%= @rent_collection.contract.client.full_name %></p>
+    <p class="pink-text">Unit Name: <%=  @rent_collection.contract.unit_name %></p>
+    <p class="pink-text">Contract Period: <%=  @rent_collection.contract.contract_period %> Months</p>
+    <p class="pink-text">Collection Type: <%=  @rent_collection.section.name %></p>
+    <p class="pink-text">Collection Date: <%=  @rent_collection.created_at %></p>
+  </div>
+
+  <div class="row center">
+    <a href="<%= url_for(controller: 'dashboard/rent_collections', contract_id: @rent_collection.contract, action: :new) %>" class="btn btn-large pink">Add Another Payment</a>
+  </div>
+</div>

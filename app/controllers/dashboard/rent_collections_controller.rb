@@ -1,4 +1,5 @@
 class Dashboard::RentCollectionsController < ApplicationController
+  before_action :set_contract
   before_action :set_dashboard_rent_collection, only: [:show, :edit, :update, :destroy]
 
   # GET /dashboard/rent_collections
@@ -14,7 +15,7 @@ class Dashboard::RentCollectionsController < ApplicationController
 
   # GET /dashboard/rent_collections/new
   def new
-    @rent_collection = Property::RentCollection.new
+    @rent_collection = current_user.rent_collections.new
   end
 
   # GET /dashboard/rent_collections/1/edit
@@ -26,9 +27,11 @@ class Dashboard::RentCollectionsController < ApplicationController
   def create
     @rent_collection = current_user.rent_collections.new(dashboard_rent_collection_params)
 
+    @rent_collection.contract = @contract if @contract
+
     respond_to do |format|
       if @rent_collection.save
-        format.html { redirect_to @rent_collection, notice: 'Rent collection was successfully created.' }
+        format.html { redirect_to url_for(controller: 'dashboard/rent_collections', action: :show, contract_id: @contract, id: @rent_collection), notice: 'Rent collection was successfully created.' }
         format.json { render :show, status: :created, location: @rent_collection }
       else
         format.html { render :new }
@@ -62,13 +65,17 @@ class Dashboard::RentCollectionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_dashboard_rent_collection
-      @rent_collection = current_user.rent_collections.find(params[:id])
-    end
+  def set_contract
+    @contract = current_user.contracts.find_by(id: params[:contract_id]) if params[:contract_id].present?
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def dashboard_rent_collection_params
-      params.fetch(:rent_collection, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_dashboard_rent_collection
+    @rent_collection = current_user.rent_collections.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def dashboard_rent_collection_params
+    params.fetch(:property_rent_collection, {}).permit(:section_id, :property_id, :user_id, :created_at, :updated_at, :fee_cents, :fee_currency, :name, :clients_properties_id)
+  end
 end

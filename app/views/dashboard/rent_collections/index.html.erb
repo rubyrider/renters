@@ -1,0 +1,25 @@
+<div class="container">
+  <h5 class="pink-text">Rent List&nbsp;
+    <% if @contract %>
+      <a href="<%= url_for(controller: 'dashboard/rent_collections', action: 'new', contract_id: @contract) %>" class="btn btn-floating btn-large pink pulse right"><i class="material-icons">add</i></a>
+      <% else %>
+      <a href="<%= url_for(controller: 'dashboard/contracts', action: 'index') %>" class="btn btn-large pink pulse right">Contracts</a>
+    <% end %>
+  </h5>
+  <br />
+  <ul class="collection">
+    <% @rent_collections.each do |rent| %>
+      <li class="collection-item avatar">
+        <a href="<%= url_for(controller: 'dashboard/rent_collections', action: 'show', contract_id: rent.contract, id: rent) %>">
+          <i class="material-icons circle">folder</i>
+          <span class="title pink-text text-darken-1"><%= rent.name %></span>
+          <p class="pink-text text-darken-3">
+            Collection Date: <%= rent.created_at.to_date %><br />
+            Contract Period: <%= rent.contract.contract_period %><br />
+          </p>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+  <br />
+</div>

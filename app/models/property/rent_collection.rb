@@ -21,5 +21,5 @@ class Property::RentCollection < ApplicationRecord
   belongs_to :contract, foreign_key: :clients_properties_id
   belongs_to :property
   belongs_to :user
-  has_one :section
+  belongs_to :section
 end

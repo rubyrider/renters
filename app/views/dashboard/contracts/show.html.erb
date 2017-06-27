@@ -15,6 +15,6 @@
   </div>
 
   <div class="row center">
-    <a href="#!" class="btn btn-large pink">Add Client(Who rented)</a>
+    <a href="<%= url_for(controller: 'dashboard/rent_collections', contract_id: @contract, action: :new) %>" class="btn btn-large pink">Collect Rent</a>
   </div>
 </div>

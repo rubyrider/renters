@@ -1,4 +1,4 @@
-<%= form_with(model: [:dashboard, rent_collection], local: true) do |form| %>
+<%= form_with(model: [:dashboard, :contract, rent_collection], local: true) do |form| %>
   <% if rent_collection.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(rent_collection.errors.count, "error") %> prohibited this dashboard_rent_collection from being saved:</h2>
@@ -14,17 +14,19 @@
 
   <div class="field">
     <%= form.label :name %><br />
-    <%= form.text_field :name, autofocus: true %>
+    <%= form.text_field :name, value: @contract.try(:unit_name) || form.object.name , autofocus: true %>
   </div>
 
+  <% unless @contract %>
   <div class="field">
     <%= form.label :contract %><br />
-    <%= form.select :section_id, Section.all.map {|section| [section.name, section.id]} ,autofocus: true %>
+    <%= form.select :clients_properties_id, current_user.contracts.all.map {|contract| [contract.unit_name, contract.id]} ,autofocus: true %>
   </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :section %><br />
-    <%= form.select :clients_properties_id, current_user.contracts.map {|section| [section.unit_name, section.id]} ,autofocus: true %>
+    <%= form.select :section_id, Section.all.map {|section| [section.name, section.id]} ,autofocus: true %>
   </div>
 
   <div class="field">
@@ -32,12 +34,15 @@
     <%= form.text_field :fee_cents, autofocus: true %>
   </div>
 
-  <div class="field">
-    <%= form.label :property %><br />
+  <% if @contract %>
+    <%= form.hidden_field :property_id, value: @contract.property.to_param, autofocus: true %>
+  <% else %>
+    <div class="field">
     <%= form.select :property_id, current_user.properties.map {|property| [property.name, property.id]} ,autofocus: true %>
   </div>
+  <% end %>
 
   <div class="actions">
-    <%= form.submit nil, class: 'btn' %>
+    <%= form.submit nil, class: 'btn pink' %>
   </div>
 <% end %>

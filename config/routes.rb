@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  namespace :property do
-    resources :collections
-  end
   devise_for :users
   devise_for :admin_users, ActiveAdmin::Devise.config
 
@@ -13,7 +10,12 @@ Rails.application.routes.draw do
 
   namespace :dashboard do
     resource :sms_account, only: [:show]
-    resources :contracts
+
+    resources :rent_collections, path: 'rent_collections', only: [:index, :show, :destroy], path: 'rents'
+
+    resources :contracts do
+      resources :rent_collections, path: 'rents', as: :property_rent_collections, path: 'rents'
+    end
     root 'welcome#dashboard'
     resources :users, only: [:show, :edit, :update]
     resources :properties
