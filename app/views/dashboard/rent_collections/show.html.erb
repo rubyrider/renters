@@ -7,7 +7,8 @@
   </div>
 
   <div class="row center">
-    <p class="pink-text">Invoice Name: <%= @rent_collection.name %></p>
+    <p class="pink-text">Amount: <%= @rent_collection.fee * 100 %></p>
+
     <p class="pink-text">Renter Name: <%= @rent_collection.contract.client.full_name %></p>
     <p class="pink-text">Unit Name: <%=  @rent_collection.contract.unit_name %></p>
     <p class="pink-text">Contract Period: <%=  @rent_collection.contract.contract_period %> Months</p>
