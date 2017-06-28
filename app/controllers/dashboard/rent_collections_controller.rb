@@ -1,4 +1,6 @@
 class Dashboard::RentCollectionsController < ApplicationController
+  before_action :authenticate_user!
+
   before_action :set_contract
   before_action :set_dashboard_rent_collection, only: [:show, :edit, :update, :destroy]
 

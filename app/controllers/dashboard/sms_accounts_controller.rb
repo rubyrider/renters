@@ -1,5 +1,7 @@
 module Dashboard
   class SmsAccountsController < ApplicationController
+    before_action :authenticate_user!
+
     before_action :set_dashboard_sms_account, only: [:show, :edit, :update, :destroy]
 
     # GET /dashboard/sms_accounts/1

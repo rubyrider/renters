@@ -1,6 +1,7 @@
 module Dashboard
   module Property
     class CollectionsController < InheritedResources::Base
+      before_action :authenticate_user!
 
       private
       def collection_params

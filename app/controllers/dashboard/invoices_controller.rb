@@ -1,5 +1,7 @@
 module Dashboard
   class InvoicesController < ApplicationController
+    before_action :authenticate_user!
+
     before_action :set_dashboard_invoice, only: [:show, :edit, :update, :destroy]
 
     # GET /dashboard/invoices

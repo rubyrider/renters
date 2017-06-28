@@ -1,0 +1,42 @@
+<div class="container ">
+  <div class="row">
+    <%= form_with(model: @enquiry, url: url_for(controller: '/welcome', action: :create_query), local: true) do |form| %>
+      <% if @enquiry.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@enquiry.errors.count, "error") %> prohibited this property from being saved:</h2>
+
+          <ul>
+            <% @enquiry.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= form.label :full_name %><br />
+        <%= form.text_field :full_name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= form.label :email %><br />
+        <%= form.email_field :email, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :phone_number %><br />
+        <%= form.phone_field :phone_number, autocomplete: "off" %>
+      </div>
+
+      <div class="field">
+        <%= form.label :enquiry %><br />
+        <%= form.text_area :enquiry, autocomplete: "off", row: 10 %>
+      </div>
+
+      <div class="actions">
+        <%= form.submit 'Submit Your Query', class: 'btn pink' %>
+      </div>
+    <% end %>
+    <br />
+
+  </div>
+</div>

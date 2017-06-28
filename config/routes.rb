@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   root 'welcome#home'
 
   get 'welcome/about'
+  get 'welcome/privacy'
+  get 'welcome/contact'
+  post 'welcome/create_query'
 
   namespace :dashboard do
     resource :sms_account, only: [:show]

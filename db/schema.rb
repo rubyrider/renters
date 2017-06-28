@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170626182742) do
+ActiveRecord::Schema.define(version: 20170628190641) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 20170626182742) do
     t.index ["property_collection_id"], name: "index_clients_properties_on_property_collection_id"
     t.index ["property_id"], name: "index_clients_properties_on_property_id"
     t.index ["user_id"], name: "index_clients_properties_on_user_id"
+  end
+
+  create_table "customer_queries", force: :cascade do |t|
+    t.string "email", null: false
+    t.string "full_name", null: false
+    t.string "phone_number", null: false
+    t.text "enquiry", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "resolution", default: "new_query", null: false
   end
 
   create_table "invoices", force: :cascade do |t|

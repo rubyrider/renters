@@ -1,6 +1,8 @@
 module Dashboard
   module Property
     class ClientsController < ApplicationController
+      before_action :authenticate_user!
+
       before_action :set_dashboard_property_client, only: [:show, :edit, :update, :destroy]
 
       # GET /dashboard/property/clients
