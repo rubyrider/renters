@@ -16,7 +16,7 @@ module Dashboard
 
     # GET /properties/new
     def new
-      @property = Property.new
+      @property = current_user.properties.new
     end
 
     # GET /properties/1/edit
