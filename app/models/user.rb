@@ -34,7 +34,7 @@ class User < ApplicationRecord
 
   has_one :sms_account
 
-  after_commit :create_sms_account
+  after_create :create_sms_account
 
   def full_name
     [first_name, last_name].compact.join(' ')
