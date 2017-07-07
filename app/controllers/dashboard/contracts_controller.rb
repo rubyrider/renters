@@ -72,9 +72,9 @@ module Dashboard
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def dashboard_contract_params
-      params.fetch(:contract, {}).permit(:client_id, :property_id, :created_at,
+      params.fetch(:contract, {}).permit(:client_id, :property_unit_id, :property_id,
                                          :updated_at, :unit_name, :contract_period,
-                                         :user_id, :start_date, :end_date)
+                                         :user_id, :start_date, :end_date, :created_at)
     end
   end
 end

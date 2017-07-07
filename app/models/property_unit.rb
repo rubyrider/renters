@@ -1,0 +1,29 @@
+# == Schema Information
+#
+# Table name: property_units
+#
+#  id                      :integer          not null, primary key
+#  name                    :string
+#  description             :text
+#  property_id             :integer
+#  max_members_count       :integer          default(1)
+#  number_of_room          :integer          default(1)
+#  number_of_bathrooms     :integer          default(0)
+#  number_of_veranda       :integer          default(0)
+#  shared                  :boolean          default(FALSE)
+#  bachelors_allowed       :boolean          default(FALSE)
+#  intercom_enabled        :boolean          default(FALSE)
+#  south_facing            :boolean          default(FALSE)
+#  pets_allowed            :boolean          default(FALSE)
+#  occupied                :boolean          default(FALSE)
+#  available_for_rent      :boolean          default(FALSE)
+#  minimum_advance_payment :integer          default(2)
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  user_id                 :integer
+#
+
+class PropertyUnit < ApplicationRecord
+  belongs_to :property
+  has_many :contracts
+end

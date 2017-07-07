@@ -55,7 +55,7 @@ module Dashboard
     end
 
     # DELETE /properties/1
-    # DELETE /properties/1.json
+    # DELETE /properties  /1.json
     def destroy
       @property.destroy
       respond_to do |format|

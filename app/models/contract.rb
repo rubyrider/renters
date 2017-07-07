@@ -13,6 +13,7 @@
 #  property_collection_id :integer
 #  start_date             :date
 #  end_date               :date
+#  property_unit_id       :integer
 #
 
 class Contract < ApplicationRecord
@@ -21,6 +22,7 @@ class Contract < ApplicationRecord
   belongs_to :client, :class_name => 'Property::Client'
   belongs_to :property
   belongs_to :user
+  belongs_to :property_unit
 
   has_many :rents, :class_name => 'Property::RentCollection', foreign_key: :clients_properties_id
 end

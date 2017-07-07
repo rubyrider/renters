@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170628190641) do
+ActiveRecord::Schema.define(version: 20170703060009) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,9 +58,11 @@ ActiveRecord::Schema.define(version: 20170628190641) do
     t.bigint "property_collection_id"
     t.date "start_date"
     t.date "end_date"
+    t.bigint "property_unit_id"
     t.index ["client_id"], name: "index_clients_properties_on_client_id"
     t.index ["property_collection_id"], name: "index_clients_properties_on_property_collection_id"
     t.index ["property_id"], name: "index_clients_properties_on_property_id"
+    t.index ["property_unit_id"], name: "index_clients_properties_on_property_unit_id"
     t.index ["user_id"], name: "index_clients_properties_on_user_id"
   end
 
@@ -135,6 +137,29 @@ ActiveRecord::Schema.define(version: 20170628190641) do
     t.index ["user_id"], name: "index_property_collections_on_user_id"
   end
 
+  create_table "property_units", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.bigint "property_id"
+    t.integer "max_members_count", default: 1
+    t.integer "number_of_room", default: 1
+    t.integer "number_of_bathrooms", default: 0
+    t.integer "number_of_veranda", default: 0
+    t.boolean "shared", default: false
+    t.boolean "bachelors_allowed", default: false
+    t.boolean "intercom_enabled", default: false
+    t.boolean "south_facing", default: false
+    t.boolean "pets_allowed", default: false
+    t.boolean "occupied", default: false
+    t.boolean "available_for_rent", default: false
+    t.integer "minimum_advance_payment", default: 2
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["property_id"], name: "index_property_units_on_property_id"
+    t.index ["user_id"], name: "index_property_units_on_user_id"
+  end
+
   create_table "renters", force: :cascade do |t|
     t.string "name"
     t.citext "code"
@@ -187,6 +212,7 @@ ActiveRecord::Schema.define(version: 20170628190641) do
   end
 
   add_foreign_key "clients_properties", "property_collections"
+  add_foreign_key "clients_properties", "property_units"
   add_foreign_key "clients_properties", "users"
   add_foreign_key "invoices", "properties"
   add_foreign_key "invoices", "users"
@@ -196,6 +222,8 @@ ActiveRecord::Schema.define(version: 20170628190641) do
   add_foreign_key "property_collections", "properties"
   add_foreign_key "property_collections", "sections"
   add_foreign_key "property_collections", "users"
+  add_foreign_key "property_units", "properties"
+  add_foreign_key "property_units", "users"
   add_foreign_key "renters", "properties"
   add_foreign_key "renters", "users"
   add_foreign_key "sections", "users"

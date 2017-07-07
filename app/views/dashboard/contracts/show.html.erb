@@ -9,7 +9,7 @@
 
   <div class="row center">
     <p class="pink-text">Renter Name: <%= @contract.client.full_name %></p>
-    <p class="pink-text">Unit Name: <%= @contract.unit_name %></p>
+    <p class="pink-text">Unit Name: <%= @contract.property_unit.name %></p>
     <p class="pink-text">Contract Period: <%= @contract.contract_period %> Months</p>
     <p class="pink-text">Start Date: <%= @contract.start_date %></p>
   </div>
