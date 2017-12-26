@@ -72,5 +72,7 @@ gem 'money-rails', '~>1'
 gem 'sidekiq'
 gem "sidekiq-cron", '~> 0.4.0'
 
+gem 'muthofun_api'
+gem "figaro"
 
 

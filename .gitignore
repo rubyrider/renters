@@ -20,3 +20,4 @@
 /.idea
 /config/deploy/*
 /config/deploy.rb
+/config/application.yml
