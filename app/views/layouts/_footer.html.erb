@@ -8,23 +8,27 @@
         <p class="grey-text text-lighten-4">Manage your property, automate your rent collection, send invoices, save
           historical data</p>
       </div>
-      <p class="white-text">Secured with:<br />
-        <%= image_tag 'comodo.png' %></p>
+      <h5>Powered By!</h5>
+      <div class="row">
+        <div class="col l4 s12">
+          <%= image_tag 'comodo.png' %></p>
+        </div>
+
+        <div class="col l4 s12">
+          <%= link_to 'http://www.muthofun.com/', target: '_blank' do %>
+              <%= image_tag 'muthofun-logo.png', width: '125px' %></p>
+          <% end %>
+        </div>
+
+        <div class="col l4 s12">
+          <%= link_to 'https://www.aamarpay.com/', target: '_blank' do %>
+              <%= image_tag 'amarPay-logo.png'%></p>
+          <% end %>
+        </div>
+      </div>
       <div class="col l12 s12">
         <h5 class="white-text">Menu</h5>
         <ul>
-          <% if signed_in?(:user) %>
-            <li><%= link_to 'Sign Out', url_for(controller: '/devise/sessions', action: :destroy), method: :delete %></li>
-            <li><%= link_to current_user.full_name, url_for(controller: '/dashboard/users', action: 'show', id: current_user) %></li>
-          <% else %>
-            <li><%= link_to 'Sign In', url_for(controller: 'devise/sessions', action: 'new') %></li>
-            <li><%= link_to 'Sign Up', url_for(controller: 'devise/registrations', action: 'new') %></li>
-          <% end %>
-          <li><%= link_to 'Home', root_path %></li>
-          <li><%= link_to 'Property', dashboard_properties_path %></li>
-          <li><%= link_to 'Contracts', dashboard_contracts_path %></li>
-          <li><%= link_to 'Renters', dashboard_property_clients_path %></li>
-
           <li><%= link_to 'Privacy Policy', url_for(controller: '/welcome', action: :privacy) %></li>
           <li><%= link_to 'About Us', url_for(controller: '/welcome', action: :about) %></li>
           <li><%= link_to 'Contact Us', url_for(controller: '/welcome', action: :contact) %></li>
