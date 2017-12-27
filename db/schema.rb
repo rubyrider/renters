@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170703060009) do
+ActiveRecord::Schema.define(version: 20171227173858) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 20170703060009) do
   end
 
   create_table "sms_accounts", force: :cascade do |t|
-    t.integer "amount", default: 0
+    t.integer "amount", default: 20
     t.bigint "user_id"
     t.string "state"
     t.integer "payment_cents", default: 0, null: false

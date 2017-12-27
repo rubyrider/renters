@@ -17,6 +17,7 @@
 /yarn-error.log
 
 .byebug_history
+.idea
 /.idea
 /config/deploy/*
 /config/deploy.rb
